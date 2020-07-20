@@ -25,6 +25,7 @@ import WebKit
 
 protocol ScriptMessageHandlerDelegate: NSObjectProtocol {
     //WebPage 에서 전달 받은 메시지를 처리할 func 를 정의
+    func openFullPopup(param: NSDictionary?, callback: String?)
 }
 
 class ScriptMessageHandler: NSObject, WKScriptMessageHandler {
@@ -36,5 +37,20 @@ class ScriptMessageHandler: NSObject, WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         //message.body 로 전달 되는 객체를 사용 한다
+        print("======= message name -", message.name)
+        print("======= message body -", message.body)
+        let action: String?
+        let param: NSDictionary?
+        let callback: String?
+        
+        if (message.body is NSDictionary) {
+            action = (message.body as! NSDictionary).object(forKey: "action") as? String
+            param = (message.body as! NSDictionary).object(forKey: "param") as? NSDictionary
+            callback = (message.body as! NSDictionary).object(forKey: "callback") as? String
+            if (action == "open_fullpopup") {
+                print("======= called action -", action!)
+                self.delegate?.openFullPopup(param: param, callback: callback)
+            }
+        }
     }
 }

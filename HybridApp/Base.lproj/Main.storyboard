@@ -66,5 +66,101 @@
             </objects>
             <point key="canvasLocation" x="161" y="134"/>
         </scene>
+        <!--Full Popup View Controller-->
+        <scene sceneID="eDG-vq-BdS">
+            <objects>
+                <viewController storyboardIdentifier="FullPopupView" id="FkH-9p-jR4" customClass="FullPopupViewController" customModule="HybridApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8Oy-J7-ap4"/>
+                        <viewControllerLayoutGuide type="bottom" id="1dE-8s-97z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JIR-37-p4x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tWR-fj-V22" userLabel="MainView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4G-3X-2ne" userLabel="TopGuideView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                        <color key="backgroundColor" red="0.044191625509999999" green="1" blue="0.80079514110000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="UoQ-qi-ejw"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhA-fF-cbf" userLabel="TitleView">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kze-S6-fgE">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Qxt-eN-D7V"/>
+                                                </constraints>
+                                                <state key="normal" title="이전">
+                                                    <color key="titleColor" red="0.18823529410000001" green="0.20784313730000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onButtonClickWithSender:" destination="FkH-9p-jR4" eventType="touchUpInside" id="5R1-HK-IXR"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="타이틀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfe-K3-Cma" userLabel="Title">
+                                                <rect key="frame" x="50" y="0.0" width="275" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.044191625512863264" green="1" blue="0.80079514105746319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Mfe-K3-Cma" secondAttribute="trailing" constant="50" id="NDe-1z-wOD"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mfe-K3-Cma" secondAttribute="bottom" id="YMD-RH-o21"/>
+                                            <constraint firstItem="kze-S6-fgE" firstAttribute="top" secondItem="HhA-fF-cbf" secondAttribute="top" id="b4H-0h-BL8"/>
+                                            <constraint firstItem="Mfe-K3-Cma" firstAttribute="top" secondItem="HhA-fF-cbf" secondAttribute="top" id="fCe-B5-CW3"/>
+                                            <constraint firstAttribute="height" constant="50" id="hMz-Pb-F0M"/>
+                                            <constraint firstItem="kze-S6-fgE" firstAttribute="leading" secondItem="HhA-fF-cbf" secondAttribute="leading" id="jkD-0O-DK9"/>
+                                            <constraint firstAttribute="bottom" secondItem="kze-S6-fgE" secondAttribute="bottom" id="pIR-9t-gmc"/>
+                                            <constraint firstItem="Mfe-K3-Cma" firstAttribute="leading" secondItem="kze-S6-fgE" secondAttribute="trailing" id="usK-FX-dt0"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0c0-Qz-tf0" userLabel="WKWebView" customClass="CustomWKWebView" customModule="HybridApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="X4G-3X-2ne" secondAttribute="trailing" id="Csa-Yq-3IQ"/>
+                                    <constraint firstItem="HhA-fF-cbf" firstAttribute="top" secondItem="X4G-3X-2ne" secondAttribute="bottom" id="Dlm-ze-KSm"/>
+                                    <constraint firstAttribute="trailing" secondItem="HhA-fF-cbf" secondAttribute="trailing" id="GOz-mp-gru"/>
+                                    <constraint firstAttribute="trailing" secondItem="0c0-Qz-tf0" secondAttribute="trailing" id="P9W-QE-yxq"/>
+                                    <constraint firstItem="X4G-3X-2ne" firstAttribute="leading" secondItem="tWR-fj-V22" secondAttribute="leading" id="Sfk-Yd-xJh"/>
+                                    <constraint firstItem="X4G-3X-2ne" firstAttribute="top" secondItem="tWR-fj-V22" secondAttribute="top" id="blU-1X-7XL"/>
+                                    <constraint firstItem="0c0-Qz-tf0" firstAttribute="top" secondItem="HhA-fF-cbf" secondAttribute="bottom" id="cyf-2K-J31"/>
+                                    <constraint firstItem="0c0-Qz-tf0" firstAttribute="bottom" secondItem="tWR-fj-V22" secondAttribute="bottom" id="kCt-xp-w7c"/>
+                                    <constraint firstItem="HhA-fF-cbf" firstAttribute="leading" secondItem="tWR-fj-V22" secondAttribute="leading" id="scI-az-agJ"/>
+                                    <constraint firstItem="0c0-Qz-tf0" firstAttribute="leading" secondItem="tWR-fj-V22" secondAttribute="leading" id="xLg-JV-ZSg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tWR-fj-V22" firstAttribute="top" secondItem="JIR-37-p4x" secondAttribute="top" id="Bit-2f-lyU"/>
+                            <constraint firstItem="tWR-fj-V22" firstAttribute="bottom" secondItem="JIR-37-p4x" secondAttribute="bottom" id="Rqk-K9-Yub"/>
+                            <constraint firstItem="tWR-fj-V22" firstAttribute="leading" secondItem="JIR-37-p4x" secondAttribute="leading" id="X5o-dc-JW7"/>
+                            <constraint firstAttribute="trailing" secondItem="tWR-fj-V22" secondAttribute="trailing" id="YP3-CJ-vni"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleBackButton" destination="kze-S6-fgE" id="Kcc-tw-a9b"/>
+                        <outlet property="titleViewHeight" destination="hMz-Pb-F0M" id="geU-ZL-JUD"/>
+                        <outlet property="titleViewTitle" destination="Mfe-K3-Cma" id="fw8-Jk-Ffz"/>
+                        <outlet property="topGuideViewHeight" destination="UoQ-qi-ejw" id="Wa8-eY-XPi"/>
+                        <outlet property="wkWebView" destination="0c0-Qz-tf0" id="F9K-zP-rqr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NuE-YC-pkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="929" y="134"/>
+        </scene>
     </scenes>
 </document>

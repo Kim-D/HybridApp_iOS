@@ -14,14 +14,16 @@ enum WKWebViewAction: Int {
     case DidFinishNavigation
     case DidStartProvisionalNavigation
     case DidFailNavigation
+    case DecidePolicyFor
 }
 
 typealias WKWebViewActionHandler = (WKWebViewAction, Any?) -> Void
 
-class CustomWKWebView: UIView, WKNavigationDelegate, WKUIDelegate, ScriptMessageHandlerDelegate {
+class CustomWKWebView: UIView, WKNavigationDelegate, WKUIDelegate, ScriptMessageHandlerDelegate, FullPopupViewDelegate {
     var wkWebView: WKWebView!
     var scriptMessageHandler: ScriptMessageHandler!
     var actionHandler: WKWebViewActionHandler!
+    var callback: String? = nil
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,7 +104,7 @@ class CustomWKWebView: UIView, WKNavigationDelegate, WKUIDelegate, ScriptMessage
     
     func loadUrl(url: String) {
         let request = NSMutableURLRequest(url: URL(string: url)!, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 20.0)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         self.wkWebView.load(request as URLRequest)
     }
     
@@ -114,6 +116,13 @@ class CustomWKWebView: UIView, WKNavigationDelegate, WKUIDelegate, ScriptMessage
     
     func executeJavascript(javascript: String) {
         self.wkWebView.evaluateJavaScript(javascript) { (result, error) in
+            if let ret = result {
+                print("====== executeJavascript result - ", ret);
+            }
+            
+            if let err = error {
+                print("====== executeJavascript error - ", err.localizedDescription);
+            }
             
         }
     }
@@ -147,6 +156,9 @@ class CustomWKWebView: UIView, WKNavigationDelegate, WKUIDelegate, ScriptMessage
     //url redirect
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("==== redirect url - " + (navigationAction.request.url?.absoluteString)!)
+        if let handler = self.actionHandler {
+            handler(WKWebViewAction.DecidePolicyFor, navigationAction.request.url?.absoluteString)
+        }
         
         switch navigationAction.navigationType {
         case WKNavigationType.linkActivated:
@@ -178,10 +190,48 @@ class CustomWKWebView: UIView, WKNavigationDelegate, WKUIDelegate, ScriptMessage
     
     //확인 팝업 필요할 때 호출
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        completionHandler()
+        print("=== WebView call alert - ", message)
+        Util.sharedInstance.showConfirmAlertWithTitle(title: "알림", message: message) {
+            completionHandler()
+        }
     }
     
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(true)
+    }
+    
+    /*
+     * WebView native call delegate
+     */
+    func openFullPopup(param: NSDictionary?, callback: String?) {
+        let topView = Util.sharedInstance.getTopViewController(isChildCheck: false)
+        let fullPopupView = topView?.storyboard?.instantiateViewController(withIdentifier: "FullPopupView") as! FullPopupViewController
+        if let paramData = param {
+            if let title = paramData.object(forKey: "title") as? String {
+                fullPopupView.popupTitle = title.isEmpty ? nil : title
+            }
+            
+            if let loginUri = paramData.object(forKey: "loginUri") as? String {
+                fullPopupView.loadUrl = loginUri.isEmpty ? nil : loginUri
+            }
+            
+            if let hookingUri = paramData.object(forKey: "hookingUri") as? String {
+                fullPopupView.hookingUrl = hookingUri.isEmpty ? nil : hookingUri
+                fullPopupView.delegate = self
+            }
+        }
+        self.callback = callback
+        topView!.navigationController?.pushViewController(fullPopupView, animated: true)
+    }
+    
+    /*
+     * FullPopupview delegate
+     */
+    
+    func closeFullPopup(code: String?) {
+        print("======== get code - ", code!)
+        if let callback = self.callback {
+            self.executeJavascript(javascript: callback + "('" + code! + "')")
+        }
     }
 }

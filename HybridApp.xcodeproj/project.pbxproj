@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D706CED24C65DF50033F7CA /* FullPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D706CEC24C65DF40033F7CA /* FullPopupViewController.swift */; };
+		5D706CF024C65E420033F7CA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D706CEF24C65E420033F7CA /* Util.swift */; };
 		5DE6B2A924B3F6AB00397B4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6B2A824B3F6AB00397B4E /* AppDelegate.swift */; };
 		5DE6B2AE24B3F6AB00397B4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6B2AC24B3F6AB00397B4E /* Main.storyboard */; };
 		5DE6B2B024B3F6AD00397B4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6B2AF24B3F6AD00397B4E /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D706CEC24C65DF40033F7CA /* FullPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullPopupViewController.swift; sourceTree = "<group>"; };
+		5D706CEF24C65E420033F7CA /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		5DE6B2A524B3F6AB00397B4E /* HybridApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HybridApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE6B2A824B3F6AB00397B4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DE6B2AD24B3F6AB00397B4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +43,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D706CEB24C65DF40033F7CA /* FullPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				5D706CEC24C65DF40033F7CA /* FullPopupViewController.swift */,
+			);
+			path = FullPopupView;
+			sourceTree = "<group>";
+		};
+		5D706CEE24C65E420033F7CA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5D706CEF24C65E420033F7CA /* Util.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		5DE6B29C24B3F6AB00397B4E = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +78,7 @@
 		5DE6B2A724B3F6AB00397B4E /* HybridApp */ = {
 			isa = PBXGroup;
 			children = (
+				5D706CEE24C65E420033F7CA /* Util */,
 				5DE6B2BE24B3FA6D00397B4E /* ViewControllers */,
 				5DE6B2A824B3F6AB00397B4E /* AppDelegate.swift */,
 				5DE6B2AC24B3F6AB00397B4E /* Main.storyboard */,
@@ -88,6 +109,7 @@
 		5DE6B2C124B3FA6D00397B4E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5D706CEB24C65DF40033F7CA /* FullPopupView */,
 				5DE6B2C224B3FA6D00397B4E /* WebView */,
 			);
 			path = Views;
@@ -174,7 +196,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DE6B2A924B3F6AB00397B4E /* AppDelegate.swift in Sources */,
+				5D706CF024C65E420033F7CA /* Util.swift in Sources */,
 				5DE6B2C724B42D0900397B4E /* ScriptMessageHandler.swift in Sources */,
+				5D706CED24C65DF50033F7CA /* FullPopupViewController.swift in Sources */,
 				5DE6B2C324B3FA6D00397B4E /* MainViewController.swift in Sources */,
 				5DE6B2C524B3FB1100397B4E /* CustomWKWebView.swift in Sources */,
 			);
