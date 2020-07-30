@@ -2,8 +2,8 @@
 //  FullPopupViewController.swift
 //  HybridApp
 //
-//  Created by KT on 2020. 7. 20..
-//  Copyright © 2020년 Kimd. All rights reserved.
+//  Created by Kim-D on 2020. 7. 20..
+//  Copyright © 2020년 Kim-D. All rights reserved.
 //
 
 import UIKit
