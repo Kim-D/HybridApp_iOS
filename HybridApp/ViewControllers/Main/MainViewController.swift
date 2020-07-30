@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
                     break
                 case .DidFinishNavigation:
                     print("=== WebView load Finish!!!!")
-                    //self.wkWebView.executeJavascript(javascript: "setCode('O8AG4a');")
                     break
                 case .DidFailNavigation:
                     print("=== WebView load Fail!!!!" + (result as! Error).localizedDescription)
@@ -30,7 +29,7 @@ class MainViewController: UIViewController {
                     break;
             }
         }
-        self.wkWebView.loadUrl(url: "http://10.10.10.108:3000")
+        self.wkWebView.loadUrl(url: "http://xxx.xxx.xxx.xxx:3000")
         //perform(#selector(openGigagenieApp), with: nil, afterDelay: 3.0);
     }
 
@@ -39,8 +38,8 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @objc func openGigagenieApp() {
-        UIApplication.shared.open(URL(string:"KTolleh00185://auth")!, options: [:]) { (ret) in
+    @objc func openApp() {
+        UIApplication.shared.open(URL(string:"")!, options: [:]) { (ret) in
             if (ret) {
                 print("====== app open!!!!");
             } else {
